@@ -1,0 +1,144 @@
+<!--<p>register works!</p>
+
+<div class="container">
+  <form #userForm="ngForm">
+      <br>
+      {{userModel |json}}
+      <div class="form-group">
+          <label>User Name :</label>
+          <input type="text" [class.is-invalid]="username.invalid && username.touched"
+           required name="username" #username="ngModel" [(ngModel)]="userModel.username"
+           pattern="^[A-Z][a-z][A-Za-z]*$"
+
+           class="form-control">
+           <div [hidden]="!username.errors?.pattern">
+            Invalid pattern
+          </div>
+          <small  class="text-danger" [class.d-none]="username.untouched ||username.valid">User Name is required</small>
+      </div>
+      {{username.className}}
+      <br>
+      {{username.valid}}
+
+      <div class="form-group">
+          <label>Email :</label>
+          <input type="email" name="email" #email="ngModel"
+          [class.is-invalid]="email.invalid && email.touched"
+           required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+           [(ngModel)]="userModel.email" class="form-control">
+           <div [hidden]="!email.errors?.pattern">
+            Invalid pattern
+          </div>
+           <small  class="text-danger" [class.d-none]="email.untouched ||email.valid">Email is required</small>
+
+      </div>
+      {{email.className}}
+      <br>
+      {{email.valid}}
+
+      <div class="form-group">
+        <label>Password :</label>
+        <input type="password" name="password" #password="ngModel"
+        [class.is-invalid]="email.invalid && email.touched"
+        required
+         [(ngModel)]="userModel.password" class="form-control">
+         <small  class="text-danger" [class.d-none]="password.untouched ||password.valid">
+           Password is required</small>
+
+    </div>
+    {{password.className}}
+    <br>
+    {{password.valid}}
+
+    <div class="form-group">
+      <label>Confirm Password :</label>
+      <input type="password" name="confirmpassword" #confirmpassword="ngModel"
+      [class.is-invalid]="confirmpassword.invalid && confirmpassword.touched"
+      required
+       [(ngModel)]="userModel.confirmpassword"
+       class="form-control">
+       <small  class="text-danger" [class.d-none]="confirmpassword.untouched ||confirmpassword.valid">Confirm Password is required</small>
+
+      </div>
+      {{confirmpassword.className}}
+      <br>
+      {{confirmpassword.valid}}
+
+      <div class="form-group">
+          <select class="custom-select" #topic="ngModel"
+          [class.is-invalid]="topic.invalid && topic.touched"
+          required
+           [(ngModel)]="userModel.topic" name="Topics">
+
+              <option *ngFor="let topic of topics">{{topic}}
+              </option>
+          </select>
+          <small  class="text-danger" [class.d-none]="topic.untouched ||topic.valid">Topics is required</small>
+
+      </div>
+      {{topic.className}}
+      <br>
+      {{topic.valid}}
+      <input type="submit" class="btn btn-primary" value="Register">
+
+
+
+
+  </form>
+</div>-->
+
+
+<div class="container">
+  <h3>Register</h3>
+  <form [formGroup]="registerForm">
+      {{registerForm.value |json}}
+      <div class="form-group">
+           <label>User Name</label>
+           <input formControlName="userName"
+           [class.is-invalid]="userName.invalid &&userName.touched"
+           pattern="^[A-Z][a-z][A-Za-z]*$"
+            type="text" class="form-control" />
+           <div [hidden]="!email.errors?.pattern">
+            Invalid pattern
+          </div>
+
+      <div *ngIf="userName.invalid && userName.touched">
+          <small class="text-danger" *ngIf="userName.errors.required">User Name is required</small>
+      </div>
+     {{userName.errors|json}}
+      </div>
+
+       <div class="form-group">
+            <label>Email</label>
+           <input type="text"  required
+  [class.is-invalid]="email.invalid && email.touched" formControlName="email"
+                   class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                   <div [hidden]="!email.errors?.pattern">Invalid pattern </div>
+            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required
+              </small>
+        </div>
+
+         <div class="form-group">
+             <label>password</label>
+              <input required formControlName="password" type="password" class="form-control" />
+         </div>
+
+         <div class="form-group">
+               <label>Confirm password</label>
+               <input required  formControlName="confirmPassword"
+          [class.is-invalid]="registerForm.errors?.misMatch"
+          type="password" class="form-control" />
+         <small class="text-danger" *ngIf="registerForm.errors?.misMatch">Password and confirm password not match</small>
+      </div>
+
+      <select class="custom-select" (change)="changeSite($event)"
+       formControlName="siteName">
+        <option value="" disabled>Choose your Site</option>
+        <option *ngFor="let site of Sites" [ngValue]="site">{{site}}</option>
+     </select>
+
+
+          <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+

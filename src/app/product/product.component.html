@@ -1,0 +1,65 @@
+
+    <div style="background-image:
+ url(https://media.newyorker.com/photos/59ee325f1685003c9c28c4ad/master/w_2560%2Cc_limit/Heller-Kirkus-Reviews.jpg);
+height: 680px; width: 100%; background-size: cover;background-position: center center;">
+
+
+ 
+<div class="container-fluid" >
+    <div class="row "  style="color: rgb(25, 131, 223)">
+    
+    <div class="col-4 text-center">
+        <h2>{{StoreName}}</h2>
+       <!-- <img [src]="ProductList[0].img" >-->
+        <div><h3>{{"We offer an explicit discount of:" + Disscount2}}</h3></div> 
+     
+    
+      <!--   <input type="text" [(ngModel)]="ClientName" >
+        <p>Welcome: {{ClientName}}</p>  -->
+   
+        <h3>{{"hello : "+ClientName}}</h3>
+        <div *ngIf="IsPurshased; then thenBlock; else elseBlock">
+        </div>
+        <div style="text-align: center;">
+            <button class="btn btn-success" (click)="Buy()">Buy</button>
+            <ng-template #thenBlock>
+            
+              <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                  
+                    </tr>
+                </thead>
+                <tbody *ngFor="let product of ProductList">
+                    <tr>
+                    <td>{{product.ID}}</td>
+                    <td>{{product.Name | uppercase}}</td>
+                    <td>{{product.Price}}</td>
+                    <td>{{product.Quantity}}</td>
+               
+                  </tr>
+                </tbody>
+              </table><br><br>
+            </ng-template>
+            
+            <ng-template #elseBlock>
+            
+            <h3>Thank you for purshasing from our store {{ClientName}}</h3>
+            
+            </ng-template>
+    
+    
+    </div>
+    
+    
+    </div>
+    </div>
+ 
+</div>
+ 
+
+
